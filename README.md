@@ -12,7 +12,7 @@ as a realtime backend.
 In the package is a readme.txt where all the steps is documented.
 
 ##Screenshot
-![XSockets.NET - Demo](https://raw.github.com/codeplanner/XSocketsPollingLegacyDB/blob/master/screenshot.PNG "Screenshot...")
+![XSockets.NET - Demo](https://raw.github.com/codeplanner/XSocketsPollingLegacyDB/master/screenshot.PNG "Screenshot...")
 
 (Package may be updated in the future)
 
