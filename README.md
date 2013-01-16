@@ -11,6 +11,9 @@ as a realtime backend.
 
 In the package is a readme.txt where all the steps is documented.
 
+##Screenshot
+![XSockets.NET - Demo](screenshot.png "Screenshot...")
+
 (Package may be updated in the future)
 
 Regards
