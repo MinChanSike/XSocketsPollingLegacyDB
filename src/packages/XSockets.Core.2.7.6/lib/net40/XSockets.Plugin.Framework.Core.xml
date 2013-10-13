@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XSockets.Plugin.Framework.Core</name>
+    </assembly>
+    <members>
+        <member name="M:XSockets.Plugin.Framework.Core.AssemblyExtensions.GetActivationAttributes``1(System.Reflection.Assembly)">
+            <summary>
+            Return all the attributes of a given type from an assembly
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.Attributes.MetadataExportAttribute">
+            <summary>
+            Inherit this attribute and attach it on the exporting class to export metadata with your regular export.
+            Then in the import use the WithMetaData class to import your export together with the metadata.
+            </summary>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.ExportedType">
+            <summary>
+            Describes an exported type (interface).
+            Each exported type (interface) have a list of PluginType that defines the instances that is exported (not the interfaces)
+            </summary>
+        </member>
+        <member name="M:XSockets.Plugin.Framework.Core.ExportedType.AddExport(XSockets.Plugin.Framework.Core.PluginType)">
+            <summary>
+            Add a concrete export for this interface
+            </summary>
+            <param name="pluginType"></param>
+        </member>
+        <member name="M:XSockets.Plugin.Framework.Core.ExportedType.GetExports">
+            <summary>
+            Get all exports for this interface.
+            Calling this will return all Exported plugins for this interface.
+            Should be used on types that have importtype of Many
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XSockets.Plugin.Framework.Core.ExportedType.GetExport">
+            <summary>
+            Get a single export.
+            This will return the FirstOrDefault exported type.
+            Should be used on types that have importtype of One
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:XSockets.Plugin.Framework.Core.ExportedType.Interface">
+            <summary>
+            The Exported Interface
+            </summary>
+        </member>
+        <member name="P:XSockets.Plugin.Framework.Core.ExportedType.TypeName">
+            <summary>
+            The Name of The Exported Interface
+            </summary>
+        </member>
+        <member name="P:XSockets.Plugin.Framework.Core.ExportedType.ExportedTypes">
+            <summary>
+            The Concrete exports for this interface
+            </summary>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.ImportType">
+            <summary>
+            Telling the composer how to build the object
+            One will be a single instance, and Many will create a list
+            </summary>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.InstancePolicy">
+            <summary>
+            Will the plugin framework create a new instance on demand or use a singleton
+            </summary>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.PluginRange">
+            <summary>
+            Decides how visible a plugin is.
+            In XSockets case this decides if a controller is a longrunningn or regular controller
+            </summary>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.Rewritable">
+            <summary>
+            Decides if a plugin can be replaced by creating your custom type/implementation
+            </summary>
+        </member>
+        <member name="T:XSockets.Plugin.Framework.Core.WithMetaData`2">
+            <summary>
+            Class for connecting imports with both an export as well as exported metadata.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TMetaData"></typeparam>
+        </member>
+    </members>
+</doc>

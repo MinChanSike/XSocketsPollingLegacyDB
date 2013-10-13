@@ -1,0 +1,18 @@
+﻿<#@ Template Language="VB" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+Imports System.Web
+Imports XSockets.Core.Common.Socket
+
+<Assembly: PreApplicationStartMethod(GetType(XSocketsBootstrap), "Start")>
+
+Public NotInheritable Class XSocketsBootstrap
+	Private Sub New()
+	End Sub
+
+	Private Shared wss As IXBaseServerContainer
+
+	Public Shared Sub Start()
+		wss = XSockets.Plugin.Framework.Composable.GetExport(Of IXBaseServerContainer)()
+		wss.StartServers()
+	End Sub
+End Class

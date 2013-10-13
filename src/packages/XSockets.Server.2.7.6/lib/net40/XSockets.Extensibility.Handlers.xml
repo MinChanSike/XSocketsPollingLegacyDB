@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XSockets.Extensibility.Handlers</name>
+    </assembly>
+    <members>
+        <member name="T:XSockets.Extensibility.Handlers.Generic">
+            <summary>
+            The built-in controller of XSockets.   
+            </summary>
+        </member>
+        <member name="M:XSockets.Extensibility.Handlers.Generic.OnMessage(XSockets.Core.Common.Socket.Event.Interface.ITextArgs)">
+            <summary>
+            Overrides OnMessage and dispatch the incomming data to all subscribers of the event
+            </summary>
+            <param name="textArgs"></param>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,0 @@
-﻿<h2>Drop an image here</h2>
-<div id="dropbox">
-</div>
-<div id="images">
-</div>

@@ -19,7 +19,7 @@ namespace PollingDbForUpdates
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            new XSockets.DevServer.DebugInstance();
+            
         }
     }
 }

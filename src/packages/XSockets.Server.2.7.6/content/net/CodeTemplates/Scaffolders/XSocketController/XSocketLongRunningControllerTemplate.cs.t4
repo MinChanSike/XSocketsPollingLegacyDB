@@ -1,0 +1,19 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using XSockets.Core.Common.Globals;
+using XSockets.Core.Common.Socket;
+using XSockets.Core.XSocket;
+using XSockets.Core.XSocket.Helpers;
+using XSockets.Plugin.Framework.Core;
+
+namespace <#= Model.Namespace #>
+{
+	[XBaseSocketMetadata("<#= Model.HandlerName #>", Constants.GenericTextBufferSize, PluginRange.Internal)]
+    public class <#= Model.HandlerName #> : XSocketController
+    {
+        static <#= Model.HandlerName #>()
+        {
+			//Initialize your long running stuff here  
+        }
+    }
+}

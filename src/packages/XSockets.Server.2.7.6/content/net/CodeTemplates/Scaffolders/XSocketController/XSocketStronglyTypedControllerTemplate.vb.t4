@@ -1,0 +1,14 @@
+﻿<#@ Template Language="VB" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+
+Imports XSockets.Core.XSocket
+Imports XSockets.Core.XSocket.Helpers
+
+Public Class <#= Model.HandlerName #>
+	Inherits XSocketController
+	Public Sub On<#= Model.HandlerName #>Message(model As <#= Model.ModelName #>)
+		'Do some persistence or whatever...            
+		'The row below makes no sense, it just an example of modelbinding :)  
+		Me.SendToAll(model, "On<#= Model.HandlerName #>Message")
+	End Sub
+End Class

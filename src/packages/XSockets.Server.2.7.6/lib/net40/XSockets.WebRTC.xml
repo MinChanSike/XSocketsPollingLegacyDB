@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XSockets.WebRTC</name>
+    </assembly>
+    <members>
+        <member name="T:XSockets.WebRTC.IPeerBroker">
+            <summary>
+            Communication model
+            </summary>
+        </member>
+        <member name="P:XSockets.WebRTC.IPeerBroker.ConnectedToPeers">
+            <summary>
+            List of Peers that the Current Peer has connected to
+            </summary>
+        </member>
+        <member name="T:XSockets.WebRTC.Peer">
+            <summary>
+            Peer information
+            </summary>
+        </member>
+        <member name="T:XSockets.WebRTC.IPeer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:XSockets.WebRTC.PeerBroker">
+            <summary>
+            The XSocket controller to use as PeerBroker over WebRTC
+            </summary>
+        </member>
+        <member name="P:XSockets.WebRTC.PeerBroker.ConnectedToPeers">
+            <summary>
+            List of Peers that the Current Peers has connected to
+            </summary>
+        </member>
+        <member name="T:XSockets.WebRTC.ISignalModel">
+            <summary>
+            Interfsace for signaling WebRTC
+            </summary>
+        </member>
+        <member name="T:XSockets.WebRTC.SignalModel">
+            <summary>
+            Implementation of signaling for WebRTC
+            </summary>
+        </member>
+    </members>
+</doc>

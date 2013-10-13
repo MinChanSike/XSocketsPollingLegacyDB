@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XSockets.Server</name>
+    </assembly>
+    <members>
+        <member name="T:XSockets.Server.Cluster">
+            <summary>
+            Controller for cluster communication
+            </summary>
+        </member>
+        <member name="T:XSockets.Server.ConfigurationLoader">
+            <summary>
+            Get the default XSockets.NET Server configuration
+            To override this create your custom configuration
+            </summary>
+        </member>
+        <member name="P:XSockets.Server.ConfigurationLoader.ConfigurationSettings">
+            <summary>
+            Get server settings from config file.
+            </summary>
+        </member>
+        <member name="M:XSockets.Server.ServerSibling.#ctor(System.String)">
+            <summary>
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:XSockets.Server.ServerSibling.Close">
+            <summary>
+                Close the current connection
+            </summary>
+        </member>
+        <member name="M:XSockets.Server.ServerSibling.Create(System.Action{System.Collections.Generic.List{System.Byte},XSockets.Core.Common.Protocol.FrameType})">
+            <summary>
+            </summary>
+            <param name="onCompleted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XSockets.Server.ServerSibling.ReceiveData(System.Collections.Generic.List{System.Byte},XSockets.Core.Common.Protocol.IReadState,System.Action{XSockets.Core.Common.Protocol.FrameType,System.Byte[]})">
+            <summary>
+            </summary>
+            <param name="data"></param>
+            <param name="readState"></param>
+            <param name="processFrame"></param>
+        </member>
+        <member name="M:XSockets.Server.ServerSibling.Recive">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:XSockets.Server.ServerSibling.Read(System.Collections.Generic.List{System.Byte},System.Byte[])">
+            <summary>
+            </summary>
+            <param name="data"></param>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:XSockets.Server.XBaseSocketServer.#ctor(XSockets.Core.Common.Socket.IXBaseServerContainer)">
+            <summary>
+            Instantiate a new web socket server
+            </summary>
+            <param name="baseServerContainer"></param>       
+        </member>
+        <member name="P:XSockets.Server.XBaseSocketServer.IsStarted">
+            <summary>
+            Determin if the WebSocket is running
+            </summary>
+        </member>
+        <member name="P:XSockets.Server.XBaseSocketServer.IsSecure">
+            <summary>
+            Determin in the current server is secured (wss://)
+            </summary>
+        </member>
+        <member name="M:XSockets.Server.XBaseServerContainer.SetConfigurationSettings(XSockets.Core.Common.Configuration.IConfigurationSettings)">
+            <summary>
+            Gives you a chance to override the configuration without creating a configuration class.
+            This method has to be called before you start the server.
+            </summary>
+            <param name="configurationSettings"></param>
+        </member>
+        <member name="M:XSockets.Server.XBaseServerContainer.#cctor">
+            <summary>
+            Static Ctor
+            </summary>
+        </member>
+        <member name="M:XSockets.Server.XBaseServerContainer.#ctor">
+            <summary>
+            Ctor
+            </summary>
+        </member>
+    </members>
+</doc>

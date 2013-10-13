@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XSockets.External</name>
+    </assembly>
+    <members>
+        <member name="T:XSockets.External.ClientPool">
+            <summary>
+            Acts as a wrapper and abstraction for XWebSocket.
+            If you are only publishing this is the class to use
+            </summary>
+        </member>
+        <member name="M:XSockets.External.ClientPool.Send(XSockets.Core.Common.Socket.Event.Interface.ITextArgs)">
+            <summary>
+            Send prepared ITextArgs
+            </summary>
+            <param name="textArgs"></param>
+        </member>
+        <member name="M:XSockets.External.ClientPool.Send(System.Object,System.String)">
+            <summary>
+            Send any object, with an eventname... will be transformed into a ITextArgs
+            </summary>
+            <param name="obj"></param>
+            <param name="eventname"></param>
+        </member>
+        <member name="T:XSockets.External.XWebSocket">
+            <summary>
+            A client for communicating with XSockets controllers
+            </summary>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="url"></param>
+            <param name="origin"></param>
+            <param name="connect"></param>
+            <param name="isPrimitive"></param>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Open">
+            <summary>
+            Will open the connection, handshake and setup all unbound bindings
+            </summary>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.FireOnClose">
+            <summary>
+            Fires the OnClose event
+            </summary>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Bind(System.String,System.Action{XSockets.Core.Common.Socket.Event.Interface.ITextArgs})">
+            <summary>
+                Create a subscription
+            </summary>
+            <param name="name">Name of the subscription</param>
+            <param name="callback">Action to take</param>
+            <returns></returns>               
+        </member>
+        <member name="M:XSockets.External.XWebSocket.UnBind(System.String)">
+            <summary>
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.FireOnMessage(XSockets.Core.Common.Socket.Event.Interface.ITextArgs)">
+            <summary>
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Close">
+            <summary>
+                Close the current connection
+            </summary>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Send(XSockets.Core.Common.Socket.Event.Interface.ITextArgs,System.Action)">
+            <summary>
+                Send message
+            </summary>
+            <param name="payload">ITextArgs</param>
+            <param name="callback"> </param>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Send(XSockets.Core.Common.Socket.Event.Interface.IBinaryArgs)">
+            <summary>
+                Send a binary message)
+            </summary>
+            <param name="payload">IBinaryArgs</param>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Create(System.Action{System.Collections.Generic.List{System.Byte},XSockets.Core.Common.Protocol.FrameType})">
+            <summary>
+            </summary>
+            <param name="onCompleted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.ReceiveData(System.Collections.Generic.List{System.Byte},XSockets.Core.Common.Protocol.IReadState,System.Action{XSockets.Core.Common.Protocol.FrameType,System.Byte[]})">
+            <summary>
+            </summary>
+            <param name="data"></param>
+            <param name="readState"></param>
+            <param name="processFrame"></param>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Recive">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:XSockets.External.XWebSocket.Read(System.Byte[])">
+            <summary>
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="E:XSockets.External.XWebSocket.OnMessage">
+            <summary>
+            Will fire in two scenarios
+            - The binding that fires is primitive
+            - The IsPrimitive property is true when passed into the constructor
+            </summary>
+        </member>
+        <member name="P:XSockets.External.XWebSocket.IsConnected">
+            <summary>
+            Return true if the socket is connected and the handshake is done
+            </summary>
+        </member>
+        <member name="P:XSockets.External.XWebSocket.IsHandshakeDone">
+            <summary>
+            True if the handshake with the server is done
+            </summary>
+        </member>
+    </members>
+</doc>

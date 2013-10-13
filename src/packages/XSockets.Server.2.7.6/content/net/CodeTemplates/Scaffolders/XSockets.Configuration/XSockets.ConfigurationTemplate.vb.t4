@@ -1,0 +1,47 @@
+﻿<#@ Template Language="VB" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+Imports System.Collections.Generic
+Imports System.Security.Cryptography.X509Certificates
+Imports XSockets.Core.Common.Configuration
+
+Public Class <#= Model.ClassName #>
+	Implements IConfigurationLoader
+	Public Settings As IConfigurationSettings = Nothing
+
+	Public Function GetUri(location As String) As Uri
+		Try
+			Return New Uri(location)
+		Catch generatedExceptionName As Exception
+
+			Return New Uri(String.Format("ws://{0}", location))
+		End Try
+
+	End Function
+
+    Public ReadOnly Property ConfigurationSettings() As IConfigurationSettings Implements IConfigurationLoader.ConfigurationSettings
+        Get
+            If Me.Settings Is Nothing Then
+                Dim uri = GetUri("<#= Model.URI #>")
+
+                Me.Settings = New XSockets.Core.Configuration.ConfigurationSettings() With { _
+                    .Port = uri.Port, _
+                    .Origin = New HashSet(Of String)() From { _
+                        "*" _
+                    }, _
+                    .Location = uri.Host, _
+                    .Scheme = uri.Scheme, _
+                    .Uri = uri, _
+                    .BufferSize = 1024, _
+                    .NumberOfAllowedConections = -1, _
+                    .CertificateSubjectDistinguishedName = "cn=localhost", _
+                    .CertificateLocation = StoreLocation.LocalMachine _
+                }
+            End If
+            Return Me.Settings
+        End Get
+    End Property
+
+	Public Sub SetConfigurationSettings(settings As IConfigurationSettings)
+		Me.Settings = settings
+	End Sub
+End Class

@@ -1,0 +1,9 @@
+﻿<#@ Template Language="VB" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+Imports XSockets.Core.XSocket
+Imports XSockets.Core.XSocket.Helpers
+
+public Class <#= Model.HandlerName #> 
+	Inherits XSocketController
+End Class
+

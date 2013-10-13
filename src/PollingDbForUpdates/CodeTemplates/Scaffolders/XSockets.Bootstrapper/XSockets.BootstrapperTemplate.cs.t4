@@ -1,0 +1,19 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System.Web;
+using XSockets.Core.Common.Socket;
+
+[assembly: PreApplicationStartMethod(typeof(<#= Model.Namespace #>.App_Start.XSocketsBootstrap), "Start")]
+
+namespace <#= Model.Namespace #>.App_Start
+{
+    public static class XSocketsBootstrap
+    {
+        private static IXBaseServerContainer wss;
+        public static void Start()
+        {
+            wss = XSockets.Plugin.Framework.Composable.GetExport<IXBaseServerContainer>();
+            wss.StartServers();
+        }        
+    }
+}

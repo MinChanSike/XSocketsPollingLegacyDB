@@ -1,0 +1,61 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using XSockets.Core.Common.Configuration;
+
+namespace <#= Model.Namespace #>
+{ 
+    /// <summary>
+    /// Get the XSockets.NET Server configuration
+    /// </summary>
+    public class <#= Model.ClassName #> : IConfigurationLoader
+    {
+        public IConfigurationSettings Settings = null;
+
+        public Uri GetUri(string location)
+        {
+            try
+            {
+                return new Uri(location);
+            }
+            catch (Exception)
+            {
+
+                return new Uri(string.Format("ws://{0}", location));
+            }
+
+        }
+
+        public IConfigurationSettings ConfigurationSettings
+        {
+            get
+            {
+                if (this.Settings == null)
+                {
+                    var uri = GetUri("<#= Model.URI #>");
+
+                    this.Settings = new XSockets.Core.Configuration.ConfigurationSettings
+                    {
+                        Port = uri.Port,
+                        Origin = new HashSet<string> { "*" },
+                        Location = uri.Host,
+                        Scheme = uri.Scheme,
+                        Uri = uri,
+                        BufferSize = 1024,
+                        NumberOfAllowedConections = -1,
+                        CertificateSubjectDistinguishedName = "cn=localhost",
+                        CertificateLocation = StoreLocation.LocalMachine                        
+                    };
+                }
+                return this.Settings;
+            }            
+        }
+
+        public void SetConfigurationSettings(IConfigurationSettings settings)
+        {
+            this.Settings = settings;
+        }
+    }
+}

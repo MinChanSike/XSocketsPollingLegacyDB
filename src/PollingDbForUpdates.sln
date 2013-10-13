@@ -9,9 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollingDbForUpdates.Data", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollingDbForUpdates.Service", "PollingDbForUpdates.Service\PollingDbForUpdates.Service.csproj", "{6EC7C3C9-4304-4023-A521-13FA7737371D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSockets.DevServer", "XSockets.DevServer\XSockets.DevServer.csproj", "{9E7F0F73-57B3-44E7-A08E-D4E306E16971}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSockets.Controllers", "XSockets.Controllers\XSockets.Controllers.csproj", "{8736B596-09EB-42CF-94D5-B76692E18D0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSocketsControllers", "XSocketsControllers\XSocketsControllers.csproj", "{8736B596-09EB-42CF-94D5-B76692E18D0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{6EC7C3C9-4304-4023-A521-13FA7737371D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC7C3C9-4304-4023-A521-13FA7737371D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC7C3C9-4304-4023-A521-13FA7737371D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E7F0F73-57B3-44E7-A08E-D4E306E16971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E7F0F73-57B3-44E7-A08E-D4E306E16971}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E7F0F73-57B3-44E7-A08E-D4E306E16971}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E7F0F73-57B3-44E7-A08E-D4E306E16971}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8736B596-09EB-42CF-94D5-B76692E18D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8736B596-09EB-42CF-94D5-B76692E18D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8736B596-09EB-42CF-94D5-B76692E18D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
