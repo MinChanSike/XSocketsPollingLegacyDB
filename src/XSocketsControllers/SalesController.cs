@@ -13,8 +13,6 @@ namespace XSockets.Controllers
 {
     public class SalesController : XSocketController
     {
-        //Reference to the service layer
-        private ISalesService SalesService;
         //Ninject
         private static IKernel kernel;
 
@@ -23,13 +21,7 @@ namespace XSockets.Controllers
             //Create the kernel once
             kernel = new StandardKernel(new ServiceModule());            
         }
-
-        public SalesController()
-        {
-            //When a new instance/connection is made get the Service
-            this.SalesService = kernel.Get<SalesService>();
-        }
-
+       
         /// <summary>
         /// Send the sales to the client asking for it
         /// </summary>
@@ -37,10 +29,14 @@ namespace XSockets.Controllers
         {
             try
             {
-                var salesData = this.SalesService.GetAllReadOnly().ToList();
+                using (var a = kernel.BeginBlock())
+                {
+                    var service = a.Get<ISalesService>();
+                    var salesData = service.GetAllReadOnly().ToList();
 
-                var salesInfo  = new SalesInfoViewModel(salesData.Select(sales => new SalesViewModel(sales)).ToList(), salesData.OrderByDescending(p => p.Updated).Select(p => p.Updated).First());
-                this.Send(salesInfo, "sales-updated");
+                    var salesInfo = new SalesInfoViewModel(salesData.Select(sales => new SalesViewModel(sales)).ToList(), salesData.OrderByDescending(p => p.Updated).Select(p => p.Updated).First());
+                    this.Send(salesInfo, "sales-updated");
+                }                
             }
             catch (Exception ex)
             {
@@ -73,18 +69,25 @@ namespace XSockets.Controllers
         {
             try
             {
-                foreach (var salesViewModel in sales)
+                using (var a = kernel.BeginBlock())
                 {
-                    var entity = this.SalesService.GetById(salesViewModel.id);
-                    if (entity != null)
+                    var service = a.Get<ISalesService>();                    
+
+                    foreach (var salesViewModel in sales)
                     {
-                        entity.Hardware = salesViewModel.hardware;
-                        entity.Software = salesViewModel.software;
-                        entity.Services = salesViewModel.services;
-                        this.SalesService.SaveOrUpdate(entity);
+                        var entity = service.GetById(salesViewModel.id);
+                        if (entity != null)
+                        {
+                            entity.Hardware = salesViewModel.hardware;
+                            entity.Software = salesViewModel.software;
+                            entity.Services = salesViewModel.services;
+                            service.SaveOrUpdate(entity);
+                        }
                     }
-                }
-                this.SalesUpdated(new SalesInfoViewModel(sales,DateTime.Now.ToString()));
+                    this.SalesUpdated(new SalesInfoViewModel(sales, DateTime.Now.ToString()));
+                }  
+
+                
             }
             catch (Exception ex)
             {

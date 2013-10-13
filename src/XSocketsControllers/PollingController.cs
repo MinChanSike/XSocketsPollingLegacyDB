@@ -3,7 +3,6 @@ using System.Linq;
 using System.Timers;
 using Ninject;
 using PollingDbForUpdates.Core.Interfaces.Service;
-using PollingDbForUpdates.Service;
 using XSockets.Controllers.Model;
 using XSockets.Controllers.Ninject;
 using XSockets.Core.Common.Globals;
@@ -25,7 +24,6 @@ namespace XSockets.Controllers
         private static readonly Timer timer;
         private static DateTime latestUpdate { get; set; }
 
-        private static ISalesService SalesService;
         private static IKernel kernel;
 
         static PollingController()
@@ -33,8 +31,7 @@ namespace XSockets.Controllers
             //Create the kernel once
             me = new SalesController();
             kernel = new StandardKernel(new ServiceModule());
-            SalesService = kernel.Get<SalesService>();
-
+            
             //First time we want data so set time to future...
             latestUpdate = DateTime.Now.AddHours(1);
 
@@ -53,22 +50,31 @@ namespace XSockets.Controllers
         {
             try
             {
-                //We will be using GetAllReadOnly to get fresh data since this uses "AsNoTracking" in EF
-                var salesData = SalesService.GetAllReadOnly().ToList();
-
-                //Check if there where any updates... since last check
-                var updated = Convert.ToDateTime(salesData.OrderByDescending(p => p.Updated).Select(p => p.Updated).First());
-                if (latestUpdate > DateTime.Now)
-                    latestUpdate = updated.AddSeconds(-1);
-
-                var updatedSales = salesData.Select(sales => new SalesViewModel(sales)).ToList();
-
-                if (updatedSales.Count > 0 && latestUpdate < updated)
+                using (var a = kernel.BeginBlock())
                 {
-                    latestUpdate = updated;
-                    //Send the data to the SalesController... The controller will then send it to all clients listening.
-                    me.RouteTo<SalesController>(new SalesInfoViewModel(updatedSales, salesData.OrderByDescending(p => p.Updated).Select(p => p.Updated).First()), "SalesUpdated");
+                    var service = a.Get<ISalesService>();
+                    //We will be using GetAllReadOnly to get fresh data since this uses "AsNoTracking" in EF
+                    var salesData = service.GetAllReadOnly().ToList();
+
+                    //Check if there where any updates... since last check
+                    var updated =
+                        Convert.ToDateTime(salesData.OrderByDescending(p => p.Updated).Select(p => p.Updated).First());
+                    if (latestUpdate > DateTime.Now)
+                        latestUpdate = updated.AddSeconds(-1);
+
+                    var updatedSales = salesData.Select(sales => new SalesViewModel(sales)).ToList();
+
+                    if (updatedSales.Count > 0 && latestUpdate < updated)
+                    {
+                        latestUpdate = updated;
+                        //Send the data to the SalesController... The controller will then send it to all clients listening.
+                        me.RouteTo<SalesController>(
+                            new SalesInfoViewModel(updatedSales,
+                                salesData.OrderByDescending(p => p.Updated).Select(p => p.Updated).First()),
+                            "SalesUpdated");
+                    }
                 }
+
             }
             catch
             {
