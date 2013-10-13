@@ -28,24 +28,27 @@ This "client" have to be a longrunning (singleton) controller... At least in the
 	Scaffold CodePlanner.ScaffoldBackend
 
 5: Installed XSockets by running "Install-Package XSockets" in the "Package Manager Console"
-	This gave us 2 additional projects... One for running XSockets-server and one for RealTime-Controller.
-	This also registered XSockets to startup in global.asax Application_Start
 
-6: Installed Ninject.MVC3 to wire my services to the interfaces in my MVC project...
+6: Created a new XSockets controller by scaffolding from the package manager console.
+	Scaffold XSocketsController SalesController -projectname XSocketsController
+
+	This will create a new class lib project and install XSockets.Core so that controllers can be created.
+	
+7: Installed Ninject.MVC3 to wire my services to the interfaces in my MVC project...
 	Registered my service and repository in NinjectWebCommon and method RegisterServices
 	
-7: Installed Ninject in the XSockets.Controllers project to be able to access the service layer.
+8: Installed Ninject in the XSocketsControllers project to be able to access the service layer.
 	Created the ServiceModule class in the project to get the services...
 
-8: Created 2 controllers in XSockets.Controllers
+9: Created/Updated 2 controllers in XSocketsControllers
 	- One (SalesController) for communication with the websocket enables clients
 	- One (PollingController) as a longrunning controller (singleton) for polling data from the legacy database.
 
-9: Created a MVC-Controller in the webproject (SalesController) to use AJAX from the client to simulate "another" client updating the legacy database.
+10: Created a MVC-Controller in the webproject (SalesController) to use AJAX from the client to simulate "another" client updating the legacy database.
 
-10: Created a simple HTML-page, added jQuery, XSockets. Also added twitter bootstrap and Wijmo to get a little nicer UI
+11: Created a simple HTML-page, added jQuery, XSockets. Also added twitter bootstrap and Wijmo to get a little nicer UI
 
-I have commented the code, but if you have questions just shoot them to codeplanner@gmail.com
+I have commented the code, but if you have questions just shoot them to uffe@xsockets.net
 
 Regards
 Uffe Björklund
